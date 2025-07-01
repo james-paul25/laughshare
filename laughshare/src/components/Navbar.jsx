@@ -11,7 +11,7 @@ export default function Navbar() {
     try {
       setLoggingOut(true);
       await logout();
-      alert("Logged out successfully."); // You can replace this with toast if you install a toast library
+      alert("Logged out successfully.");
       navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);

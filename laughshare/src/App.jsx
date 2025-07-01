@@ -6,23 +6,21 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
-// Splash screen component
 function SplashScreen() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-yellow-100">
       <img
-        src="/laugh.png" // ✅ Accessing image from public/
+        src="/laugh.png"
         alt="LaughShare Logo"
         className="w-24 h-24 animate-bounce"
       />
       <p className="mt-4 text-yellow-700 text-xl font-bold animate-pulse">
-        Loading LaughShare...
+        LaughShare...
       </p>
     </div>
   );
 }
 
-// App routes after loading
 function AppRoutes() {
   const { loading } = useAuth();
   if (loading) return <SplashScreen />;

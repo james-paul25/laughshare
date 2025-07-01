@@ -1,4 +1,4 @@
-// File: src/pages/PostJoke.jsx
+import React from "react";
 import { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";

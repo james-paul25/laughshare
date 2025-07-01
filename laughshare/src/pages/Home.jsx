@@ -16,7 +16,7 @@ export default function Home() {
       setJokes(
         jokeCollection.docs.map((doc) => ({
           id: doc.id,
-          likedBy: [], // fallback
+          likedBy: [],
           ...doc.data(),
         }))
       );

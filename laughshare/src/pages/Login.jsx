@@ -8,7 +8,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       await login();
-      navigate("/"); // Redirect to homepage after successful login
+      navigate("/");
     } catch (error) {
       console.error("Login failed:", error);
       alert("Login failed. Please try again.");

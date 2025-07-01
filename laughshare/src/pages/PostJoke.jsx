@@ -43,6 +43,7 @@ export default function PostJoke() {
           className="block w-full p-2 border-2 border-yellow-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
         >
           <option>Funny</option>
+          <option>Tech Jokes</option>
           <option>Dad Jokes</option>
           <option>Puns</option>
           <option>Dark Humor</option>

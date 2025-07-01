@@ -14,17 +14,40 @@ export default function Home() {
     const fetchJokes = async () => {
       const jokeCollection = await getDocs(collection(db, "jokes"));
       setJokes(
-        jokeCollection.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        jokeCollection.docs.map((doc) => ({
+          id: doc.id,
+          likedBy: [], // fallback
+          ...doc.data(),
+        }))
       );
     };
     fetchJokes();
   }, []);
 
-  const handleLike = async (id, likes) => {
+  const handleLike = async (id, likes, likedBy = []) => {
+    if (!user) {
+      alert("Please login to like jokes.");
+      return;
+    }
+
     const jokeRef = doc(db, "jokes", id);
-    await updateDoc(jokeRef, { likes: likes + 1 });
+    const hasLiked = likedBy.includes(user.uid);
+
+    const updatedLikedBy = hasLiked
+      ? likedBy.filter((uid) => uid !== user.uid)
+      : [...likedBy, user.uid];
+
+    const newLikes = hasLiked ? likes - 1 : likes + 1;
+
+    await updateDoc(jokeRef, {
+      likes: newLikes,
+      likedBy: updatedLikedBy,
+    });
+
     setJokes((prev) =>
-      prev.map((j) => (j.id === id ? { ...j, likes: likes + 1 } : j))
+      prev.map((j) =>
+        j.id === id ? { ...j, likes: newLikes, likedBy: updatedLikedBy } : j
+      )
     );
   };
 
@@ -38,7 +61,7 @@ export default function Home() {
 
         <select
           onChange={(e) => setFilter(e.target.value)}
-          className="p-2 border rounded"
+          className="p-2 border border-yellow-300 rounded"
         >
           <option>All</option>
           <option>Funny</option>
@@ -52,53 +75,57 @@ export default function Home() {
         <p className="text-center text-gray-500">No posts yet.</p>
       ) : (
         <div className="max-w-2xl mx-auto px-4">
-          {" "}
-          {/* ⬅️ Container added here */}
-          {filteredJokes.map((joke) => (
-            <div
-              key={joke.id}
-              className="border-2 border-yellow-300 rounded-md p-4 mb-4 shadow-sm"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  {joke.photoURL && (
-                    <img
-                      src={joke.photoURL}
-                      alt="Profile"
-                      className="w-8 h-8 rounded-full border border-gray-300"
-                    />
-                  )}
-                  <p className="text-sm text-gray-700">
-                    Posted by {joke.username}
-                  </p>
-                </div>
-                {joke.createdAt && (
-                  <p className="text-xs text-gray-500">
-                    {new Date(joke.createdAt.seconds * 1000).toLocaleString()}
-                  </p>
-                )}
-              </div>
+          {filteredJokes.map((joke) => {
+            const isLiked = user && joke.likedBy?.includes(user.uid);
 
-              <p className="font-medium">Category: {joke.category}</p>
-              <p>{joke.content}</p>
-
-              <button
-                onClick={() =>
-                  user
-                    ? handleLike(joke.id, joke.likes || 0)
-                    : alert("Please login to like jokes.")
-                }
-                className={`text-sm flex items-center gap-1 mt-2 transition ${
-                  user
-                    ? "text-blue-500 hover:text-blue-600 cursor-pointer"
-                    : "text-gray-400 cursor-not-allowed"
-                }`}
+            return (
+              <div
+                key={joke.id}
+                className="border-2 border-yellow-300 rounded-md p-4 mb-4 shadow-sm"
               >
-                <HandThumbUpIcon className="w-4 h-4" />
-                Like ({joke.likes || 0})
-              </button>
-            </div>
-          ))}
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    {joke.photoURL && (
+                      <img
+                        src={joke.photoURL}
+                        alt="Profile"
+                        className="w-8 h-8 rounded-full border border-gray-300"
+                      />
+                    )}
+                    <p className="text-sm text-gray-700">
+                      Posted by {joke.username}
+                    </p>
+                  </div>
+                  {joke.createdAt && (
+                    <p className="text-xs text-gray-500">
+                      {new Date(joke.createdAt.seconds * 1000).toLocaleString()}
+                    </p>
+                  )}
+                </div>
+
+                <p className="font-medium">Category: {joke.category}</p>
+                <p>{joke.content}</p>
+
+                <button
+                  onClick={() =>
+                    user
+                      ? handleLike(joke.id, joke.likes || 0, joke.likedBy || [])
+                      : alert("Please login to like jokes.")
+                  }
+                  className={`text-sm flex items-center gap-1 mt-2 transition ${
+                    user
+                      ? isLiked
+                        ? "text-red-500 hover:text-red-600"
+                        : "text-blue-500 hover:text-blue-600"
+                      : "text-gray-400 cursor-not-allowed"
+                  }`}
+                >
+                  <HandThumbUpIcon className="w-4 h-4" />
+                  {isLiked ? "Unlike" : "Like"} ({joke.likes || 0})
+                </button>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

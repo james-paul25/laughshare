@@ -64,6 +64,7 @@ export default function Home() {
         >
           <option>All</option>
           <option>Funny</option>
+          <option>Tech Jokes</option>
           <option>Dad Jokes</option>
           <option>Puns</option>
           <option>Dark Humor</option>

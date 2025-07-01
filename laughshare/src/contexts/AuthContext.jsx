@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 import {
   getAuth,
   onAuthStateChanged,
@@ -26,4 +26,7 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
+}
+export function useAuth() {
+  return useContext(AuthContext);
 }

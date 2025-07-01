@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@craco/craco": "^7.1.0",
+    "@heroicons/react": "^2.2.0",
+    "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/vite": "^4.1.11",
     "firebase": "^11.10.0",
     "react": "^19.1.0",

@@ -2,10 +2,13 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { HandThumbUpIcon } from "@heroicons/react/24/solid";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Home() {
   const [jokes, setJokes] = useState([]);
   const [filter, setFilter] = useState("All");
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchJokes = async () => {
@@ -30,31 +33,74 @@ export default function Home() {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Latest Jokes</h2>
+      <div className="flex flex-col items-center mb-4">
+        <h2 className="text-xl font-semibold mb-2">Latest Jokes</h2>
 
-      <select
-        onChange={(e) => setFilter(e.target.value)}
-        className="mb-4 p-2 border rounded"
-      >
-        <option>All</option>
-        <option>Funny</option>
-        <option>Dad Jokes</option>
-        <option>Puns</option>
-        <option>Dark Humor</option>
-      </select>
+        <select
+          onChange={(e) => setFilter(e.target.value)}
+          className="p-2 border rounded"
+        >
+          <option>All</option>
+          <option>Funny</option>
+          <option>Dad Jokes</option>
+          <option>Puns</option>
+          <option>Dark Humor</option>
+        </select>
+      </div>
 
-      {filteredJokes.map((joke) => (
-        <div key={joke.id} className="border-b py-2">
-          <p className="font-medium">Category: {joke.category}</p>
-          <p>{joke.content}</p>
-          <button
-            onClick={() => handleLike(joke.id, joke.likes || 0)}
-            className="text-blue-500 text-sm"
-          >
-            Like ({joke.likes || 0})
-          </button>
+      {filteredJokes.length === 0 ? (
+        <p className="text-center text-gray-500">No posts yet.</p>
+      ) : (
+        <div className="max-w-2xl mx-auto px-4">
+          {" "}
+          {/* ⬅️ Container added here */}
+          {filteredJokes.map((joke) => (
+            <div
+              key={joke.id}
+              className="border-2 border-yellow-300 rounded-md p-4 mb-4 shadow-sm"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  {joke.photoURL && (
+                    <img
+                      src={joke.photoURL}
+                      alt="Profile"
+                      className="w-8 h-8 rounded-full border border-gray-300"
+                    />
+                  )}
+                  <p className="text-sm text-gray-700">
+                    Posted by {joke.username}
+                  </p>
+                </div>
+                {joke.createdAt && (
+                  <p className="text-xs text-gray-500">
+                    {new Date(joke.createdAt.seconds * 1000).toLocaleString()}
+                  </p>
+                )}
+              </div>
+
+              <p className="font-medium">Category: {joke.category}</p>
+              <p>{joke.content}</p>
+
+              <button
+                onClick={() =>
+                  user
+                    ? handleLike(joke.id, joke.likes || 0)
+                    : alert("Please login to like jokes.")
+                }
+                className={`text-sm flex items-center gap-1 mt-2 transition ${
+                  user
+                    ? "text-blue-500 hover:text-blue-600 cursor-pointer"
+                    : "text-gray-400 cursor-not-allowed"
+                }`}
+              >
+                <HandThumbUpIcon className="w-4 h-4" />
+                Like ({joke.likes || 0})
+              </button>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }

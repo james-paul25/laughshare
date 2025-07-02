@@ -4,7 +4,8 @@ import Home from "./pages/Home";
 import PostJoke from "./pages/PostJoke";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import { useAuth } from "./contexts/useAuth";
 
 function SplashScreen() {
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/useAuth";
 import { useNavigate } from "react-router-dom";
 
 export default function PostJoke() {

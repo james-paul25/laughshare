@@ -112,16 +112,30 @@ export default function Home() {
                       ? handleLike(joke.id, joke.likes || 0, joke.likedBy || [])
                       : alert("Please login to like jokes.")
                   }
-                  className={`text-sm flex items-center gap-1 mt-2 transition ${
-                    user
-                      ? isLiked
-                        ? "text-red-500 hover:text-red-600"
-                        : "text-blue-500 hover:text-blue-600"
-                      : "text-gray-400 cursor-not-allowed"
-                  }`}
+                  className={`flex items-center gap-1 mt-2 px-3 py-1 rounded-full transition-all duration-150 ease-in-out shadow-sm
+    ${
+      user
+        ? isLiked
+          ? "bg-blue-100 text-blue-600"
+          : "hover:bg-gray-100 text-gray-600"
+        : "text-gray-400 cursor-not-allowed"
+    }
+  `}
                 >
-                  <HandThumbUpIcon className="w-4 h-4" />
-                  {isLiked ? "Unlike" : "Like"} ({joke.likes || 0})
+                  <HandThumbUpIcon
+                    className={`w-5 h-5 transition-transform duration-200 ${
+                      isLiked
+                        ? "text-blue-600 scale-110"
+                        : "text-gray-500 group-hover:scale-105"
+                    }`}
+                  />
+                  <span
+                    className={`text-sm font-medium ${
+                      isLiked ? "font-semibold text-blue-600" : "text-gray-700"
+                    }`}
+                  >
+                    {isLiked ? "Liked" : "Like"} ({joke.likes || 0})
+                  </span>
                 </button>
               </div>
             );

@@ -27,5 +27,4 @@ function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
-
 export { AuthProvider, AuthContext };

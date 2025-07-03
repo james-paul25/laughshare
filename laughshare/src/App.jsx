@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import PostJoke from "./pages/PostJoke";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import { AuthProvider } from "./contexts/AuthContext";
 import { useAuth } from "./contexts/useAuth";
@@ -27,14 +28,19 @@ function AppRoutes() {
   if (loading) return <SplashScreen />;
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/post" element={<PostJoke />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </>
+
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/post" element={<PostJoke />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 

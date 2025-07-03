@@ -40,7 +40,7 @@ export default function PostJoke() {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="block w-full p-2 border-2 border-yellow-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          className="block w-full p-2 border-2 border-yellow-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
         >
           <option>Funny</option>
           <option>Tech Jokes</option>
@@ -55,7 +55,7 @@ export default function PostJoke() {
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="block w-full p-2 border-2 border-yellow-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          className="block w-full p-2 border-2 border-yellow-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
           rows="4"
           required
         />
@@ -63,7 +63,7 @@ export default function PostJoke() {
 
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+        className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 transition"
       >
         Post
       </button>

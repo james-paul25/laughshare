@@ -20,7 +20,7 @@ export default function Login() {
       <h2 className="text-xl font-semibold mb-4">Login to LaughShare</h2>
       <button
         onClick={handleLogin}
-        className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition duration-200"
+        className="bg-green-500 hover:bg-green-800 text-white px-4 py-2 rounded transition duration-200"
       >
         Login with Google
       </button>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import PostJoke from "./pages/PostJoke";
 import Navbar from "./components/Navbar";
+import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -36,6 +37,7 @@ function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/post" element={<PostJoke />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
 

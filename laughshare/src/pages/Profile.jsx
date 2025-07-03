@@ -55,9 +55,16 @@ export default function Profile() {
         <ul className="space-y-4">
           {posts.map((post) => (
             <li key={post.id} className="bg-gray-100 p-4 rounded shadow">
-              <p className="text-gray-800">
-                <b>Category: {post.category}</b>
-              </p>
+              <div className="flex justify-between items-start mb-1">
+                <p className="text-gray-800 font-semibold">
+                  Category: {post.category}
+                </p>
+                {post.createdAt && (
+                  <p className="text-xs text-gray-500">
+                    {new Date(post.createdAt.seconds * 1000).toLocaleString()}
+                  </p>
+                )}
+              </div>
               <p className="text-gray-800">{post.content}</p>
               <p className="text-sm text-gray-500 mt-2">
                 Likes: {post.likes || 0}

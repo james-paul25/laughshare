@@ -50,7 +50,6 @@ export default function Navbar() {
           </h1>
         </Link>
 
-        {/* hamburger icon */}
         <button
           className="md:hidden text-gray-800 transition hover:scale-110"
           onClick={() => setMenuOpen((prev) => !prev)}
@@ -105,6 +104,16 @@ export default function Navbar() {
                     className="block px-4 py-2 text-sm hover:bg-gray-100 transition"
                   >
                     View Profile
+                  </Link>
+                  <Link
+                    to="/leaderboard"
+                    onClick={() => {
+                      setDropdownOpen(false);
+                      setMenuOpen(false);
+                    }}
+                    className="block px-4 py-2 text-sm hover:bg-gray-100 transition"
+                  >
+                    View Leaderboard
                   </Link>
                   <button
                     onClick={handleLogout}

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { useAuth } from "../contexts/useAuth";
 import { db } from "../firebase";
+import { Trophy } from 'lucide-react';
+import { HeartIcon } from '@heroicons/react/24/solid'
 
 export default function Leaderboard() {
   const { user } = useAuth();
@@ -26,8 +28,9 @@ export default function Leaderboard() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold text-center text-gray-800 mb-2">
-         Leaderboard
+      <h1 className="text-2xl font-bold text-center text-gray-800 mb-2 flex items-center justify-center gap-2">
+        <Trophy className="w-6 h-6 text-yellow-500" />
+        Leaderboard
       </h1>
       <p className="text-center text-sm text-gray-500 mb-6">
         Who got the most laughs?
@@ -61,9 +64,13 @@ export default function Leaderboard() {
                   <td className="p-3 border border-gray-300 text-gray-800">
                     {joke.content}
                   </td>
-                  <td className="p-3 border border-gray-300 text-center text-blue-600">
-                     {joke.likes || 0}
-                  </td>
+                 <td className="p-3 border border-gray-300 text-blue-600 text-center">
+                <div className="flex items-center justify-center gap-1">
+                    <HeartIcon className="w-4 h-4 text-red-500" />
+                    {joke.likes || 0}
+                </div>
+                </td>
+
                 </tr>
               ))}
             </tbody>

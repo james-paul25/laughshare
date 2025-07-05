@@ -113,14 +113,14 @@ export default function Home() {
                       : alert("Please login to like jokes.")
                   }
                   className={`flex items-center gap-1 mt-2 px-3 py-1 rounded-full transition-all duration-150 ease-in-out shadow-sm
-    ${
-      user
-        ? isLiked
-          ? "bg-blue-100 text-blue-600"
-          : "hover:bg-gray-100 text-gray-600"
-        : "text-gray-400 cursor-not-allowed"
-    }
-  `}
+                    ${
+                      user
+                        ? isLiked
+                          ? "hover:bg-blue-200 bg-blue-100 text-blue-600"
+                          : "hover:bg-gray-200 text-gray-600"
+                        : "text-gray-400 cursor-not-allowed"
+                    }
+                  `}
                 >
                   <HandThumbUpIcon
                     className={`w-5 h-5 transition-transform duration-200 ${

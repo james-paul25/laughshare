@@ -1,9 +1,9 @@
 import React from 'react';
 import Typewriter from  'typewriter-effect';
 
-const Typed = (string) => {
+const Typed = ({string}) => {
   return (
-    <div>
+    <div className='TypeEffect'>
       <Typewriter
         options={{
           strings: [string],

@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Leaderboard from "./pages/Leaderboard"
+import Settings from "./pages/Settings"
 import { AuthProvider } from "./contexts/AuthContext";
 import { useAuth } from "./contexts/useAuth";
 
@@ -40,6 +41,7 @@ function AppRoutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </main>
 

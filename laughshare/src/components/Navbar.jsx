@@ -115,6 +115,16 @@ export default function Navbar() {
                   >
                     View Leaderboard
                   </Link>
+                  <Link
+                    to="/settings"
+                    onClick={() => {
+                      setDropdownOpen(false);
+                      setMenuOpen(false);
+                    }}
+                    className="block px-4 py-2 text-sm hover:bg-gray-100 transition"
+                  >
+                    Settings
+                  </Link>
                   <button
                     onClick={handleLogout}
                     disabled={loggingOut}

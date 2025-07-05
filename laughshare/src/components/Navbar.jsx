@@ -46,7 +46,7 @@ export default function Navbar() {
           onClick={() => setMenuOpen(false)}
         >
           <h1 className="text-gray-800 font-bold text-xl md:text-2xl">
-            LaughShare 😂
+            LaughShare
           </h1>
         </Link>
 

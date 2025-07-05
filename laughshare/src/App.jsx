@@ -19,7 +19,7 @@ function SplashScreen() {
         className="w-24 h-24 animate-bounce"
       />
       <p className="mt-4 text-yellow-700 text-xl font-bold animate-pulse">
-        LaughShare...
+        LaughShare
       </p>
     </div>
   );

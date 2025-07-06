@@ -1,8 +1,9 @@
 import { useAuth } from "../contexts/useAuth";
 import { db } from "../firebase";
-import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, query, where, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import DeleteModal from "../modal/DeleteModal";
+import EditModal from "../modal/EditModal";
 import { HiDotsHorizontal } from "react-icons/hi";
 
 export default function Profile() {
@@ -11,6 +12,9 @@ export default function Profile() {
   const [showMenuId, setShowMenuId] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteTargetId, setDeleteTargetId] = useState(null);
+  const [editForm, setEditForm] = useState({ id: "", content: "", category: "" });
+  const [editModalOpen, setEditModalOpen] = useState(false);
+
 
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -38,6 +42,38 @@ export default function Profile() {
     alert("Joke deleted successfully!");
     setDeleteTargetId(null);
   };
+
+  const handleEdit = (id) => {
+    const postToEdit = posts.find((post) => post.id === id);
+    if (postToEdit) {
+      setEditForm({
+        id: postToEdit.id,
+        content: postToEdit.content,
+        category: postToEdit.category,
+      });
+      setEditModalOpen(true);
+    }
+  };
+
+  const saveEditedPost = async (formData) => {
+    const jokeRef = doc(db, "jokes", formData.id);
+    await updateDoc(jokeRef, {
+      content: formData.content,
+      category: formData.category,
+    });
+
+    setPosts((prev) =>
+      prev.map((post) =>
+        post.id === formData.id
+          ? { ...post, content: formData.content, category: formData.category }
+          : post
+      )
+    );
+
+    setEditModalOpen(false);
+    alert("Joke updated successfully!");
+  };
+  
 
   if (!user) {
     return (
@@ -91,7 +127,7 @@ export default function Profile() {
                       <button
                         className="block px-4 py-2 hover:bg-gray-100 w-full text-left"
                         onClick={() => {
-                          alert("Edit functionality coming soon!");
+                          handleEdit(post.id);
                           setShowMenuId(null);
                         }}
                       >
@@ -125,6 +161,13 @@ export default function Profile() {
         open={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
         onConfirm={handleDelete}
+      />
+      <EditModal
+        open={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+        formData={editForm}
+        onChange={setEditForm}
+        onSave={saveEditedPost}
       />
     </div>
   );

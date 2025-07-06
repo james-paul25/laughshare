@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc, query, orderBy } from "firebase/firestore";
 import { HandThumbUpIcon } from "@heroicons/react/24/solid";
 import { useAuth } from "../contexts/useAuth";
 
@@ -9,11 +9,15 @@ export default function Home() {
   const [filter, setFilter] = useState("All");
   const { user } = useAuth();
 
+
+
   useEffect(() => {
     const fetchJokes = async () => {
-      const jokeCollection = await getDocs(collection(db, "jokes"));
+      const jokeRef = await collection(db, "jokes");
+      const jokesQuery = query(jokeRef, orderBy("createdAt", "desc"));
+      const jokeSnapshot = await getDocs(jokesQuery);
       setJokes(
-        jokeCollection.docs.map((doc) => ({
+        jokeSnapshot.docs.map((doc) => ({
           id: doc.id,
           likedBy: [],
           ...doc.data(),

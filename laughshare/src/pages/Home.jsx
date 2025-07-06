@@ -81,7 +81,7 @@ export default function Home() {
             return (
               <div
                 key={joke.id}
-                className="border-2 border-yellow-300 rounded-md p-4 mb-4 shadow-sm"
+                className="bg-gray-100 p-4 mb-4 rounded shadow"
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">

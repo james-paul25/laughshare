@@ -59,6 +59,7 @@ export default function Leaderboard() {
                       <span className="text-gray-700 text-sm">
                         {joke.username|| "Anonymous"}
                       </span>
+                      <span>#1</span>
                     </div>
                   </td>
                   <td className="p-3 border border-gray-300 text-gray-800">

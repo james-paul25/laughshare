@@ -35,6 +35,7 @@ export default function Profile() {
     await deleteDoc(doc(db, "jokes", deleteTargetId));
     setPosts(posts.filter((post) => post.id !== deleteTargetId));
     setShowDeleteModal(false);
+    alert("Joke deleted successfully!");
     setDeleteTargetId(null);
   };
 

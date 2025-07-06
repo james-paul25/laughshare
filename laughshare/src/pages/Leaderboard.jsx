@@ -11,6 +11,8 @@ export default function Leaderboard() {
 
   useEffect(() => {
     const fetchJokes = async () => {
+      if (!user) return;
+
       const jokesRef = collection(db, "jokes");
       const jokesQuery = query(jokesRef, orderBy("likes", "desc"));
       const jokeSnapshot = await getDocs(jokesQuery);
@@ -24,7 +26,7 @@ export default function Leaderboard() {
       );
     };
     fetchJokes();
-  }, []);
+  },);
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
@@ -47,10 +49,11 @@ export default function Leaderboard() {
               </tr>
             </thead>
             <tbody>
-              {jokes.map((joke) => (
+              {jokes.map((joke, index) => (
                 <tr key={joke.id} className="hover:bg-gray-50">
                   <td className="p-3 border border-gray-300">
                     <div className="flex items-center gap-2">
+                    <span>#{index + 1}</span>
                       <img
                         src={joke.photoURL || "/default-avatar.png"}
                         alt="User"
@@ -59,7 +62,6 @@ export default function Leaderboard() {
                       <span className="text-gray-700 text-sm">
                         {joke.username|| "Anonymous"}
                       </span>
-                      <span>#1</span>
                     </div>
                   </td>
                   <td className="p-3 border border-gray-300 text-gray-800">

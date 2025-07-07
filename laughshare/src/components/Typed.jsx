@@ -17,4 +17,4 @@ const Typed = ({string}) => {
   )
 }
 
-export default Typed
+export default Typed;

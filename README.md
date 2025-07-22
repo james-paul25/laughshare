@@ -19,8 +19,8 @@
 | Layer      | Technologies                                  |
 |------------|-----------------------------------------------|
 | Frontend   | React.js, Tailwind CSS, Material UI (optional)|
-| Backend    | Firebasw, RESTful API               |
-| Database   | MySQL or MongoDB (planned) |
+| Backend    | Firebase, RESTful API               |
+| Database   | Firebase firestore |
 
 ---
 

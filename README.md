@@ -30,18 +30,6 @@
 
 ---
 
-## 📦 Local Setup
-
-### 🔧 Frontend (React)
-
-```bash
-cd frontend
-npm install
-npm run dev
-
-### Backend (Firebase)
-
-
 ### 🚀 Roadmap
 
 [x] Meme posting & viewing
@@ -57,3 +45,14 @@ npm run dev
 [x] Mobile responsiveness
 
 [ ] Dark mode toggle
+
+---
+
+## 📦 Local Setup
+
+### 🔧 Frontend (React)
+
+```bash
+cd frontend
+npm install
+npm run dev

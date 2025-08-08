@@ -16,7 +16,7 @@ const LeaderboardTable = ({jokes}) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {jokes.map((joke, index) => (
+                            {jokes.filter(joke => joke.likes > 0).map((joke, index) => (
                                 <tr key={joke.id} className="hover:bg-gray-50">
                                     <td className="p-3 border border-gray-300">
                                         <div className="flex items-center gap-2">
@@ -37,7 +37,7 @@ const LeaderboardTable = ({jokes}) => {
                                     <td className="p-3 border border-gray-300 text-blue-600 text-center">
                                         <div className="flex items-center justify-center gap-1">
                                             <HeartIcon className="w-4 h-4 text-red-500" />
-                                            {joke.likes || 0}
+                                            {joke.likes}
                                         </div>
                                     </td>
 

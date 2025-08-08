@@ -5,6 +5,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useAuth } from "../contexts/useAuth";
 import { useNavigate } from "react-router-dom";
 
+//TODO: refactor this file
 export default function PostJoke() {
   const [category, setCategory] = useState("Funny");
   const [content, setContent] = useState("");

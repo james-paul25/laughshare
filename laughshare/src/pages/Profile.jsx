@@ -6,6 +6,8 @@ import DeleteModal from "../modal/DeleteModal";
 import EditModal from "../modal/EditModal";
 import { HiDotsHorizontal } from "react-icons/hi";
 
+//TODO: refactor this file
+
 export default function Profile() {
   const { user } = useAuth();
   const [posts, setPosts] = useState([]);

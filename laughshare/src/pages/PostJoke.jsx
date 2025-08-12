@@ -4,7 +4,6 @@ import { useAuth } from "../contexts/useAuth";
 import { useNavigate } from "react-router-dom";
 import PostForm from "../forms/PostForm";
 
-//TODO: refactor this file
 export default function PostJoke() {
   const [category, setCategory] = useState("Funny");
   const [content, setContent] = useState("");

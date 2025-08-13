@@ -1,6 +1,7 @@
 import React from "react";
 import Typed from "../components/Typed"
 
+//TODO: make this functionality
 export default function Settings(){
 
     return (

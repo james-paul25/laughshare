@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { handleSubmit } from "../services/postService";
 
-const PostForm = ({user, category, setCategory, content, setContent, navigate}) => {
+const PostForm = ({ user, navigate }) => {
+    
+    const [category, setCategory] = useState("Funny");
+    const [content, setContent] = useState("");
 
     return (
-        <form onSubmit={handleSubmit({
+        <form onSubmit={(e) => handleSubmit(e, {
             category: category,
             content: content,
             setContent: setContent,

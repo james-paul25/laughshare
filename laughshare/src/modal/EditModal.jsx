@@ -1,6 +1,10 @@
 import React from "react";
+import { useEscapeClose } from "../hooks/useEscapeClose";
 
 export default function EditModal({ open, onClose, formData, onChange, onSave }) {
+
+  useEscapeClose(onClose);
+
   if (!open) return null;
 
   return (
@@ -15,12 +19,12 @@ export default function EditModal({ open, onClose, formData, onChange, onSave })
         />
 
         <div className="flex justify-end gap-3">
-          <button onClick={onClose} className="text-gray-600 hover:underline">
+          <button onClick={onClose} className="text-gray-600 hover:underline cursor-pointer">
             Cancel
           </button>
           <button
             onClick={() => onSave(formData)}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
           >
             Save Changes
           </button>

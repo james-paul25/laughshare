@@ -1,6 +1,10 @@
 import React from "react";
+import { useEscapeClose } from "../hooks/useEscapeClose";
 
 export default function DeleteModal({ open, onClose, onConfirm }) {
+
+  useEscapeClose(onClose);
+  
   if (!open) return null;
 
   return (

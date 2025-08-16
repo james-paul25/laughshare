@@ -75,7 +75,7 @@ export default function Profile() {
     setEditModalOpen(false);
     alert("Joke updated successfully!");
   };
-  
+
 
   if (!user) {
     return (
@@ -112,15 +112,16 @@ export default function Profile() {
                   Category: {post.category}
                 </p>
                 {post.createdAt && (
-                <p className="text-xs text-gray-500 text-right">
-                  {new Date(post.createdAt.seconds * 1000).toLocaleString()}
-                </p>
+                  <p className="text-xs text-gray-500 text-right">
+                    {new Date(post.createdAt.seconds * 1000).toLocaleString()}
+                  </p>
                 )}
                 <div className="relative">
                   <button
                     onClick={() =>
                       setShowMenuId((prev) => (prev === post.id ? null : post.id))
                     }
+                    className="cursor-pointer"
                   >
                     <HiDotsHorizontal className="text-gray-500 hover:text-gray-700" />
                   </button>
@@ -150,7 +151,7 @@ export default function Profile() {
                 </div>
               </div>
 
-              
+
               <p className="text-gray-800">{post.content}</p>
               <p className="text-sm text-gray-500 mt-2">Likes: {post.likes || 0}</p>
             </li>

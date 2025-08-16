@@ -44,7 +44,7 @@ const PostForm = ({user, category, setCategory, content, setContent, navigate}) 
 
             <button
                 type="submit"
-                className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 transition"
+                className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-800 transition cursor-pointer"
             >
                 Post
             </button>

@@ -1,6 +1,10 @@
 import React from "react";
+import { useEscapeClose } from "../hooks/useEscapeClose";
 
 export default function EditModal({ open, onClose, formData, onChange, onSave }) {
+
+  useEscapeClose(onClose);
+
   if (!open) return null;
 
   return (

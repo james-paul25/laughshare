@@ -3,6 +3,8 @@ import { useAuth } from "../contexts/useAuth";
 import { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
+//TODO refactor this code
+
 export default function Navbar() {
   const { user, logout } = useAuth();
   const [loggingOut, setLoggingOut] = useState(false);
